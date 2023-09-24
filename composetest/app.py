@@ -1,7 +1,7 @@
 import time
 
 import redis
-from flask import lask:wq
+from flask import Flask
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
@@ -12,7 +12,7 @@ def get_hit_count():
         try:
             return cache.incr('hits')
         except redis.exception.ConnectionErrod as exc:
-            if retries = 0;
+            if retries == 0:
                 raise exc
             retries -= 1
             time.sleep(0.5)
