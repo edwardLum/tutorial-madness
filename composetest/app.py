@@ -11,7 +11,7 @@ def get_hit_count():
     while True:
         try:
             return cache.incr('hits')
-        except redis.exception.ConnectionErrod as exc:
+        except redis.exception.ConnectionError as exc:
             if retries == 0:
                 raise exc
             retries -= 1
